@@ -5,12 +5,12 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">  
           <div class="form-group">
             <label for="username">Usuário</label>
-            <input id="username" formControlName="username" type="text" />
+            <input id="username" formControlName="username" type="text" placeholder="Lumi"/>
           </div>
           <div class="form-group">
             <label for="password">Senha</label>
             <div class="password-wrapper">
-              <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password" />
+              <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="*******"/>
               <button type="button" class="toggle-password" (click)="togglePassword()">
                 <img [src]="showPassword ? 'Eye off.svg' : 'eye open.svg'" alt="Trocar a visibilidade da senha" />
               </button>
