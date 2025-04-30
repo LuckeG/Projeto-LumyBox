@@ -1,8 +1,8 @@
 <main class="login-main">
     <section class="login-form-section">
       <div class="login-container">
-        <h1 class="logo">LumiBox</h1>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">  
+          <h1 class="logo">LumiBox</h1>
           <div class="form-group">
             <label for="username">Usuário</label>
             <input id="username" formControlName="username" type="text" placeholder="Lumi"/>
