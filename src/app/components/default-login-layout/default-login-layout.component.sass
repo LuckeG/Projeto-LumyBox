@@ -39,7 +39,6 @@
   padding: 40px;
   border-radius: 10px;
   max-width: 40vw;
-  height: 77vh;
   width: 100%;
   text-align: center;
 
@@ -130,12 +129,30 @@ label
   padding: 12px;
   background-color: #002d62;
   color: #fff;
-  border: none;
-  border-radius: 8px;
+  border-color: #ffffff86;
+  border-radius: 8px 0 0 8px; /* top-left, bottom-left arredondados */
   font-size: 16px;
   cursor: pointer;
   font-family: 'Poppins';
   opacity: 0.8;
   font-weight: 300;
   margin-top: 30px;
+
+.login-google
+  border-radius: 20 20px 20px 0; /* top-right, bottom-right arredondados */
+  width: 100%;
+  padding: 12px;
+  background-color: #1a1a2e;
+  color: #fff;
+  border-color: #ffffff86;
+  border-radius: 0 8px 8px 0; /* mais exagerado, arredondamento mais evidente */
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Poppins';
+  opacity: 0.8;
+  font-weight: 300;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px
 
