@@ -4,15 +4,15 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">  
           <h1 class="logo">LumiBox</h1>
           <div class="form-group">
-            <label for="username">Usuário</label>
-            <input id="username" formControlName="username" type="text" placeholder="Lumi"/>
+            <label for="username">Email</label>
+            <input id="username" formControlName="username" type="text" placeholder="Lumi@gmail.com"/>
           </div>
           <div class="form-group">
             <label for="password">Senha</label>
             <div class="password-wrapper">
               <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="*******"/>
               <button type="button" class="toggle-password" (click)="togglePassword()">
-                <img [src]="showPassword ? 'Eye off.svg' : 'Eye.svg'" alt="Trocar a visibilidade da senha" />
+                <img [src]="showPassword ? '/assets/imagens/Eye-off.svg' : '/assets/imagens/Eye.svg'" alt="Trocar a visibilidade da senha" />
               </button>
             </div>
             <div class="links">
@@ -20,8 +20,13 @@
               <a class="right-link" routerLink="/forgot-password">Esqueceu sua senha?</a>
             </div>
           </div>
-          <button type="submit" class="login-button">Entrar</button>
+          <div class="btns">
+            <button type="submit" class="login-button">Entrar</button>
+            <button (click)="loginWithGoogle()" class="login-button">Entrar com google</button>
+          </div>
+         
         </form>
       </div>
     </section>
   </main>
+
