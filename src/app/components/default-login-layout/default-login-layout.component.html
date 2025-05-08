@@ -1,32 +1,43 @@
-<main class="login-main">
-    <section class="login-form-section">
-      <div class="login-container">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">  
-          <h1 class="logo">LumiBox</h1>
-          <div class="form-group">
-            <label for="username">Email</label>
-            <input id="username" formControlName="username" type="text" placeholder="Lumi@gmail.com"/>
-          </div>
-          <div class="form-group">
-            <label for="password">Senha</label>
-            <div class="password-wrapper">
-              <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="*******"/>
-              <button type="button" class="toggle-password" (click)="togglePassword()">
-                <img [src]="showPassword ? '/assets/imagens/Eye-off.svg' : '/assets/imagens/Eye.svg'" alt="Trocar a visibilidade da senha" />
-              </button>
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>LumiBox</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="LumiBox - Sistema de Login">
+    <link rel="icon" type="image/x-icon" href="assets/imagens/favicon.ico">
+  </head>
+  <body>
+    <main class="login-main">
+      <section class="login-form-section">
+        <div class="login-container">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">  
+            <h1 class="logo">LumiBox</h1>
+            <div class="form-group">
+              <label for="username">Email</label>
+              <input id="username" formControlName="username" type="text" placeholder="Lumi@gmail.com"/>
             </div>
-            <div class="links">
-              <a class="left-link" routerLink="/register">Não está cadastrado?</a>
-              <a class="right-link" routerLink="/forgot-password">Esqueceu sua senha?</a>
+            <div class="form-group">
+              <label for="password">Senha</label>
+              <div class="password-wrapper">
+                <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="*******"/>
+                <button type="button" class="toggle-password" (click)="togglePassword()">
+                  <img [src]="showPassword ? '/assets/imagens/Eye-off.svg' : '/assets/imagens/Eye.svg'" alt="Trocar a visibilidade da senha" />
+                </button>
+              </div>
+              <div class="links">
+                <a class="left-link" routerLink="/register">Não está cadastrado?</a>
+                <a class="right-link" routerLink="/forgot-password">Esqueceu sua senha?</a>
+              </div>
             </div>
-          </div>
-          <div class="btns">
-            <button type="submit" class="login-button">Entrar</button>
-            <button (click)="loginWithGoogle()" class="login-google"> <img class="google" src="/assets/imagens/devicon_google.svg" alt="Logo google">Entrar com google</button>
-          </div>
-         
-        </form>
-      </div>
-    </section>
-  </main>
-
+            <div class="btns">
+              <button type="submit" class="login-button">Entrar</button>
+              <button (click)="loginWithGoogle()" class="login-google"> <img class="google" src="/assets/imagens/devicon_google.svg" alt="Logo google">Entrar com google</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
