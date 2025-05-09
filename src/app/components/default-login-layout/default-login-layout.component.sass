@@ -113,13 +113,17 @@ label
   color: #ffd369;
   opacity: 0.8;
   font-family: 'Poppins';
-  margin-top: 4px
+  margin-top: 4px;
+  text-decoration: none;
+  
 
 
 .right-link 
   color: #c0213d;
   font-family: 'Poppins';
   margin-top: 4px;
+  text-decoration: none;
+
 
 .btns 
   display: flex;
@@ -138,6 +142,13 @@ label
   font-weight: 300;
   margin-top: 30px;
 
+  &:hover
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+    margin-right: 20px;
+
+    
+
 .login-google
   border-radius: 20 20px 20px 0; /* top-right, bottom-right arredondados */
   width: 100%;
@@ -155,4 +166,10 @@ label
   display: flex;
   justify-content: center;
   gap: 10px
+
+  
+  &:hover
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+    margin-left: 20px
 
