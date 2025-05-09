@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="form-box">
+    <h1 class="logo">LUMIBOX</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <label for="email" style="color: aliceblue;">Email</label>
+      <input id="email" type="email" formControlName="email" />
+      <label for="password">Senha</label>
+      <div class="password-wrapper">
+        <input [type]="hidePassword ? 'password' : 'text'" id="password" formControlName="password" />
+        <i class="fas" [class.fa-eye]="hidePassword" [class.fa-eye-slash]="!hidePassword"
+           (click)="togglePasswordVisibility('password')"></i>
+      </div>
+      <label for="confirmPassword">Repetir senha</label>
+      <div class="password-wrapper">
+        <input [type]="hideRepeatPassword ? 'password' : 'text'" id="confirmPassword" formControlName="confirmPassword" />
+        <i class="fas" [class.fa-eye]="hideRepeatPassword" [class.fa-eye-slash]="!hideRepeatPassword"
+           (click)="togglePasswordVisibility('confirmPassword')"></i>
+      </div>
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+</div>
+
+
+<p>register works!</p>
