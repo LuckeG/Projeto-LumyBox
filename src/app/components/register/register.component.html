@@ -1,25 +1,41 @@
-<div class="container">
-  <div class="form-box">
-    <h1 class="logo">LUMIBOX</h1>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <label for="email" style="color: aliceblue;">Email</label>
-      <input id="email" type="email" formControlName="email" />
-      <label for="password">Senha</label>
-      <div class="password-wrapper">
-        <input [type]="hidePassword ? 'password' : 'text'" id="password" formControlName="password" />
-        <i class="fas" [class.fa-eye]="hidePassword" [class.fa-eye-slash]="!hidePassword"
-           (click)="togglePasswordVisibility('password')"></i>
+<body>
+  <main class="global-main">
+    <section class="global-form-section">
+      <div class="global-container">
+        <div class="global-label">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <h1 class="global-logo">LumiBox</h1>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" type="email" formControlName="email" type="text" placeholder="Lumi@gmail.com" />
+            </div>
+            <div class="form-group">
+              <label for="password">Senha</label>
+              <div class="password-wrapper">
+                <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                  placeholder="*******" />
+                <button type="button" class="toggle-password" (click)="togglePassword()">
+                  <img [src]="showPassword ? '/assets/imagens/Eye-off.svg' : '/assets/imagens/Eye.svg'" alt="Trocar a visibilidade da senha" />
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Repetir senha</label>
+              <div class="password-wrapper">
+                <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                  placeholder="*******" />
+                <button type="button" class="toggle-password" (click)="togglePassword()">
+                  <img [src]="showPassword ? '/assets/imagens/Eye-off.svg' : '/assets/imagens/Eye.svg'" alt="Trocar a visibilidade da senha" />
+                </button>
+              </div>
+            </div>
+            <button type="submit" class="global-button">Cadastrar</button>
+          </form>
+        </div>
       </div>
-      <label for="confirmPassword">Repetir senha</label>
-      <div class="password-wrapper">
-        <input [type]="hideRepeatPassword ? 'password' : 'text'" id="confirmPassword" formControlName="confirmPassword" />
-        <i class="fas" [class.fa-eye]="hideRepeatPassword" [class.fa-eye-slash]="!hideRepeatPassword"
-           (click)="togglePasswordVisibility('confirmPassword')"></i>
-      </div>
-      <button type="submit">Cadastrar</button>
-    </form>
-  </div>
-</div>
+    </section>
+  </main>
+</body>
 
 
 <p>register works!</p>

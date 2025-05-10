@@ -11,8 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
-  hidePassword = true;
-  hideRepeatPassword = true;
+  showPassword = false;
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.registerForm = this.fb.group({
@@ -26,9 +25,8 @@ export class RegisterComponent {
     this.router.navigate(['/register']);
   }
 
-  togglePasswordVisibility(field: string) {
-    if (field === 'password') this.hidePassword = !this.hidePassword;
-    if (field === 'confirmPassword') this.hideRepeatPassword = !this.hideRepeatPassword;
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 
   onSubmit() {
