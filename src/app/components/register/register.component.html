@@ -7,12 +7,12 @@
             <h1 class="global-logo">LumiBox</h1>
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="email" formControlName="email" type="text" placeholder="Lumi@gmail.com" />
+              <input id="email" class="email" formControlName="email" type="text" placeholder="Lumi@gmail.com" />
             </div>
             <div class="form-group">
               <label for="password">Senha</label>
               <div class="password-wrapper">
-                <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                <input id="password" class="password" [type]="showPassword ? 'text' : 'password'" formControlName="password"
                   placeholder="*******" />
                 <button type="button" class="toggle-password" (click)="togglePassword()">
                   <img [src]="showPassword ? '/assets/imagens/Eye-off.svg' : '/assets/imagens/Eye.svg'" alt="Trocar a visibilidade da senha" />
@@ -20,16 +20,16 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="confirmPassword">Repetir senha</label>
+              <label for="confirmPassword" id="Confirm-Pass">Repetir senha</label>
               <div class="password-wrapper">
-                <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                <input id="password" class="password"[type]="showPassword ? 'text' : 'password'" formControlName="password"
                   placeholder="*******" />
                 <button type="button" class="toggle-password" (click)="togglePassword()">
                   <img [src]="showPassword ? '/assets/imagens/Eye-off.svg' : '/assets/imagens/Eye.svg'" alt="Trocar a visibilidade da senha" />
                 </button>
               </div>
             </div>
-            <button type="submit" class="global-button">Cadastrar</button>
+            <button type="submit" class="login-button">Cadastrar</button>
           </form>
         </div>
       </div>

@@ -1,113 +1,115 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-*
-  padding: 0
-  margin: 0
-  box-sizing: border-box
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
 
 
-html, body 
-  margin: 0
-  padding: 0
-  height: 100%
-  background-color: #0f1126 // o azul escuro do fundo
+
+html, body
+  background-color: #1a1a2b // o azul escuro do fundo
   overflow: hidden
 
-
-app-root 
+app-root
   display: block
   height: 100%
 
-
 .global-label
-  display: block;
-  margin-bottom: 10px;
-  font-family: 'Poppins';
-  opacity: 0.8;
-  font-weight: 300;
+  display: block
+  margin-bottom: 10px
+  font-family: 'Poppins'
+  opacity: 0.8
+  font-weight: 300
   //margin-bottom: 20px
 
-.form-group 
-  margin-bottom: 20px;
-  text-align: left;
+.form-group
+  text-align: left
 
+.toggle-password
+  position: absolute
+  right: 10px
+  top: 50%
+  transform: translateY(-50%)
+  background: none
+  border: none
+  cursor: pointer
+  color: #fff
 
-.toggle-password 
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #fff;
-
-.global-container 
-  background-color:#1a1a2e;
-  padding: 40px;
-  border-radius: 10px;
-  max-width: 40vw;
-  width: 100%;
-  text-align: center;
-
-.global-main 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #1a1a2e;
-  color: #fff;
-
-.global-form-section 
+.global-container //div que contém o formulário
+  background-color: #1a1a2b
+  padding: 40px
+  border-radius: 10px
+  max-width: 40vw
   width: 100%
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center
 
-.global-logo 
-  font-size: 50px;
-  font-weight: bold;
-  filter: opacity (0.8);
-  color: #d12642;
-  margin-bottom: 30px;
-  font-family: 'Cinzel Decorative';
-  opacity: 0.8;
+.global-main //div principal
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100vh
+  background-color: #1a1a2b
+  color: #fff
 
-.password-wrapper 
-  position: relative;
+.global-form-section
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
 
-.global-button 
-  width: 100%;
-  padding: 12px;
-  background-color: #002d62;
-  color: #fff;
-  border-color: #ffffff86;
-  border-radius: 8px 0 0 8px; /* top-left, bottom-left arredondados */
-  font-size: 16px;
-  cursor: pointer;
-  font-family: 'Poppins';
-  opacity: 0.8;
-  font-weight: 300;
-  margin-top: 30px;
+.global-logo
+  font-size: 50px
+  font-weight: bold
+  color: #d12642
+  margin-bottom: 30px
+  font-family: 'Cinzel Decorative'
+  opacity: 0.8
+
+.password-wrapper
+  position: relative
+
+.login-button //talvez trocar para global-button
+  width: 100%
+  padding: 12px
+  margin-top: 30px
+  background-color: #002d62
+  color: #fff
+  border-color: #ffffff44
+  border-radius: 8px 0 0 8px; // top-left, bottom-left arredondados
+  font-size: 16px
+  cursor: pointer
+  font-family: 'Poppins'
+  opacity: 0.8
+  font-weight: 300
+
+  &:hover
+    transform: scale(1.1)
+    transition: transform 0.3s ease
+    margin-right: 20px
 
 
-#email
-  width: 100%;
-  padding: 10px;
+.email
+  width: 100%
+  padding: 10px
   margin-bottom: 20px
-  border-radius: 5px;
-  border: 1px solid #4a4a6a;
-  background-color: #1a1c36;
-  color: #fff;
-  font-family: 'Poppins';
+  border-radius: 5px
+  border: 1px solid #4a4a6a
+  background-color: #1a1a2b
+  color: #fff  
+  opacity: 0.5
+  font-family: 'Poppins'
 
-#password
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #4a4a6a;
-  background-color: #1a1c36;
-  color: #fff;
-  font-family: 'Poppins';
+.password
+  width: 100%
+  padding: 10px
+  border-radius: 5px
+  border: 1px solid #4a4a6a
+  background-color: #1a1a2b
+  color: #fff
+  opacity: 0.5
+  font-family: 'Poppins'
+
+label
+  display: block
+  margin-bottom: 10px
+  font-family: 'Poppins'
+  opacity: 0.8
+  font-weight: 300
