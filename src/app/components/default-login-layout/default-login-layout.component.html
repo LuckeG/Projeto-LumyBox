@@ -1,17 +1,17 @@
 <body>
-  <main class="login-main">
-    <section class="login-form-section">
-      <div class="login-container">
+  <main class="global-main">
+    <section class="global-form-section">
+      <div class="global-container">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">  
           <h1 class="global-logo">LumiBox</h1>
           <div class="form-group">
             <label for="username">Email</label>
-            <input id="username" formControlName="username" type="text" placeholder="Lumi@gmail.com"/>
+            <input id="username" class="email" type="text" placeholder="Lumi@gmail.com"/>
           </div>
           <div class="form-group">
             <label for="password">Senha</label>
             <div class="password-wrapper">
-              <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="*******"/>
+              <input id="password" class="password"[type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="*******"/>
               <button type="button" class="toggle-password" (click)="togglePassword()">
                 <img [src]="showPassword ? '/assets/imagens/Eye-off.svg' : '/assets/imagens/Eye.svg'" alt="Trocar a visibilidade da senha" />
               </button>
@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="btns">
-            <button type="submit" class="login-button">Entrar</button>
+            <button type="submit" class="login-button" routerLink="/home">Entrar</button>
             <button (click)="loginWithGoogle()" class="login-google"> <img class="google" src="/assets/imagens/devicon_google.svg" alt="Logo google">Entrar com google</button>
           </div>
         </form>

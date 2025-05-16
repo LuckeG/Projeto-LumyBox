@@ -1,0 +1,39 @@
+<!-- home.component.html -->
+<div class="home-container">
+    <div class="header">
+      <p class="global-logo">LumiBox</p>
+      <div class="search-section">
+        <div class="sorteio">
+                <button class="refresh-button">&#x21bb;</button>
+                <p>Não sabe o que asistir?</p>
+            </div>
+        <div class="filters">
+            
+            <div class="search-section">
+                <label for="inp">
+                    <img src="../../../assets/imagens/search-icon.svg" alt="">
+                </label>
+                <input type="text" id="inp" class="email">
+            </div>
+            
+          <button class="filter-button">Filmes</button>
+          <button class="filter-button">Séries</button>
+          <select class="filter-select">
+            <option>Categorias</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  
+    <div class="main-content">
+      <div class="grid-movies">
+        <div class="movie-card" *ngFor="let movie of movies">
+          <img [src]="movie.img" [alt]="movie.title" />
+        </div>
+      </div>
+  
+      <div class="suggestion-box">
+        <div class="suggestion-card"></div>
+      </div>
+    </div>
+  </div>

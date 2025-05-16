@@ -34,13 +34,21 @@ export class DefaultLoginLayoutComponent {
     this.showPassword = !this.showPassword;
   }
 
-  onSubmit() {
-    if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      // Adicione a lógica de login aqui
-      console.log('Login', username, password);
-    }
+onSubmit() {
+  if (this.loginForm.valid) {
+    const { username, password } = this.loginForm.value;
+
+    this.authService.loginWithEmail(username, password)
+      .then((result: UserCredential) => {
+        console.log('Login realizado com sucesso!', result.user);
+        this.router.navigate(['/home']); // Redireciona para a tela Home
+      })
+      .catch((error: any) => {
+        console.error('Erro ao fazer login:', error);
+        // Aqui você pode exibir mensagens de erro, etc.
+      });
   }
+}
 
   loginWithGoogle(){
     this.authService.loginWithGoogle()

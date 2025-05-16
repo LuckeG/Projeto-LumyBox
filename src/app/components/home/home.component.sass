@@ -1,0 +1,88 @@
+// home.component.sass
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$background-color: #0f0f23
+$primary-pink: #e84a7d
+$card-bg: #b48484
+$text-color: #d3d3d3
+
+.home-container
+    padding: 40px
+    font-family: 'Poppins'
+    opacity: 0.8
+
+.header
+    display: flex
+    justify-content: space-between
+    align-items: flex-start
+.logo
+    font-size: 40px
+    color: $primary-pink
+    font-weight: bold
+.search-section
+    display: flex
+    align-items: center
+    gap: 20px
+
+    .filters
+        display: flex
+        gap: 10px
+    .filter-button
+        background: none
+        border: 1px solid white
+        padding: 5px 10px
+        border-radius: 10px
+        color: white
+        cursor: pointer
+    .filter-select
+        background: none
+        border: 1px solid white
+        padding: 5px 10px
+        border-radius: 10px
+        color: white
+
+.main-content
+    display: flex
+    margin-top: 40px
+
+.grid-movies
+    display: grid
+    grid-template-columns: repeat(5, 1fr)
+    gap: 1.5rem
+    flex: 1
+
+.movie-card
+    width: 140px
+    height: 210px
+    overflow: hidden
+    border-radius: 10px
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3)
+    transition: transform 0.2s ease
+
+.movie-card img
+    width: 100%
+    height: 100%
+    object-fit: cover
+    border-radius: 10px
+
+.movie-card:hover
+    transform: scale(1.05)
+
+.sorteio
+    display: flex
+    gap: 10px
+    justify-content: center
+    align-items: center
+    background: none
+    border: 1px solid white
+    padding: 5px 10px
+    border-radius: 10px
+    color: white
+    cursor: pointer
+
+.refresh-button
+    background: none
+    border: none
+    color: white
+    font-size: 30px
+    cursor: pointer
