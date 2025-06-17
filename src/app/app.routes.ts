@@ -9,8 +9,8 @@ import { HomeComponent } from './components/home/home.component';
 import { CommonModule } from '@angular/common';
 
 export const routes: Routes = [
-    { path: "login", component: LoginComponent },
-    { path: '', component: DefaultLoginLayoutComponent},
+    //{ path: "login", component: LoginComponent },
+    { path: 'login', component: DefaultLoginLayoutComponent},
     { path: 'forgot-password', component: ForgetPasswordComponent},
     { path: 'register', component:  RegisterComponent},
     { path: 'home', component: HomeComponent },

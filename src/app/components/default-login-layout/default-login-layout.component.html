@@ -6,7 +6,7 @@
           <h1 class="global-logo">LumiBox</h1>
           <div class="form-group">
             <label for="username">Email</label>
-            <input id="username" class="email" type="text" placeholder="Lumi@gmail.com"/>
+            <input id="username" class="email" type="text" formControlName="username" placeholder="Lumi@gmail.com"/>
           </div>
           <div class="form-group">
             <label for="password">Senha</label>
@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="btns">
-            <button type="submit" class="login-button" routerLink="/home">Entrar</button>
+            <button type="submit" class="login-button">Entrar</button>
             <button (click)="loginWithGoogle()" class="login-google"> <img class="google" src="/assets/imagens/devicon_google.svg" alt="Logo google">Entrar com google</button>
           </div>
         </form>

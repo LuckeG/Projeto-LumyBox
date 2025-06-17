@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserCredential } from 'firebase/auth';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-default-login-layout',
@@ -18,7 +19,8 @@ export class DefaultLoginLayoutComponent {
 
   constructor (private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private cliente: HttpClient
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -36,17 +38,14 @@ export class DefaultLoginLayoutComponent {
 
 onSubmit() {
   if (this.loginForm.valid) {
-    const { username, password } = this.loginForm.value;
-
-    this.authService.loginWithEmail(username, password)
-      .then((result: UserCredential) => {
-        console.log('Login realizado com sucesso!', result.user);
-        this.router.navigate(['/home']); // Redireciona para a tela Home
-      })
-      .catch((error: any) => {
-        console.error('Erro ao fazer login:', error);
-        // Aqui você pode exibir mensagens de erro, etc.
-      });
+    this.cliente
+      .post<{ access: string; refresh: string }>(
+        'http://localhost:8000/auth/jwt/create/',
+        { 
+          username: this.loginForm.controls['username'].value,
+          password: this.loginForm.controls['password'].value
+        }
+      ).subscribe((resp) => console.log(resp.access));
   }
 }
 

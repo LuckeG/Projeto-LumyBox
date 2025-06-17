@@ -22,7 +22,7 @@
             <div class="form-group">
               <label for="confirmPassword">Repetir senha</label>
               <div class="password-wrapper">
-                <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="confirmPassword"
                   placeholder="*******" />
                 <button type="button" class="toggle-password" (click)="togglePassword()">
                   <img [src]="showPassword ? '/assets/imagens/Eye-off.svg' : '/assets/imagens/Eye.svg'" alt="Trocar a visibilidade da senha" />

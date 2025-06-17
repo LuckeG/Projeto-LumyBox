@@ -8,12 +8,14 @@ import { importProvidersFrom } from '@angular/core';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 
 import { firebaseConfig} from './firebase.config';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
   provideRouter(routes), 
   importProvidersFrom(provideFirebaseApp (() => initializeApp(firebaseConfig))),
   importProvidersFrom(provideAnalytics(() => getAnalytics ())),
-  importProvidersFrom(provideAuth(() => getAuth()))
+  importProvidersFrom(provideAuth(() => getAuth())),
+  provideHttpClient(withFetch()),
 ]
 };
