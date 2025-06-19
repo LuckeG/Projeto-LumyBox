@@ -45,7 +45,9 @@ onSubmit() {
           username: this.loginForm.controls['username'].value,
           password: this.loginForm.controls['password'].value
         }
-      ).subscribe((resp) => console.log(resp.access));
+      ).subscribe((resp) => {
+        this.router.navigate(['/home']);
+      });
   }
 }
 

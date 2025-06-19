@@ -39,6 +39,8 @@ export class RegisterComponent {
       };
 
       this.cliente.post('http://localhost:8000/auth/users/', payload)
-        .subscribe((resp) => console.log(resp));
+        .subscribe((resp) => {
+          this.router.navigate(['/login']);
+        });
     }
 }}
