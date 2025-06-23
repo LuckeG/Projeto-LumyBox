@@ -1,6 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './views/login/login.component';
+import { PerfilComponent } from './views/perfil/perfil.component';
 import { DefaultLoginLayoutComponent } from './components/default-login-layout/default-login-layout.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component'; // novo
 import { NgModule } from '@angular/core';
@@ -9,7 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CommonModule } from '@angular/common';
 
 export const routes: Routes = [
-    //{ path: "login", component: LoginComponent },
+    { path: 'perfil', component: PerfilComponent },
     { path: 'login', component: DefaultLoginLayoutComponent},
     { path: 'forgot-password', component: ForgetPasswordComponent},
     { path: 'register', component:  RegisterComponent},

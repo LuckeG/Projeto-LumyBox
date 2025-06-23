@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class DefaultLoginLayoutComponent {
+  credentials = {username: '', password: ''};
   loginForm: FormGroup;
   showPassword = false;
 
@@ -35,18 +36,28 @@ export class DefaultLoginLayoutComponent {
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
+  
 
 onSubmit() {
   if (this.loginForm.valid) {
     this.cliente
       .post<{ access: string; refresh: string }>(
         'http://localhost:8000/auth/jwt/create/',
-        { 
+        {
           username: this.loginForm.controls['username'].value,
           password: this.loginForm.controls['password'].value
         }
       ).subscribe((resp) => {
-        this.router.navigate(['/home']);
+        localStorage.setItem('token', resp.access);
+
+        // Agora busca os dados do usuário com o token
+        this.cliente.get<{ username: string }>(
+          'http://localhost:8000/auth/user/',
+          { headers: { Authorization: `Bearer ${resp.access}` } }
+        ).subscribe(userResp => {
+          localStorage.setItem('username', userResp.username);
+          this.router.navigate(['/home']);
+        });
       });
   }
 }

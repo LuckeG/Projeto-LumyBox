@@ -5,7 +5,7 @@
       <div class="search-section">
         <div class="sorteio">
                 <button class="refresh-button">&#x21bb;</button>
-                <p>Não sabe o que asistir?</p>
+                <p>Não sabe o que assistir?</p>
             </div>
         <div class="filters">
             
@@ -20,7 +20,10 @@
           <button class="filter-button">Séries</button>
           <select class="filter-select">
             <option>Categorias</option>
+            <option *ngFor="let categoria of categorias" [value]="categorias">{{ categoria }}</option>
           </select>
+
+           <button class="profile-button" routerLink="/perfil">Perfil</button>
         </div>
       </div>
     </div>

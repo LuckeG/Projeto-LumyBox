@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Auth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from '@angular/fire/auth';
 
 @Injectable ({
@@ -6,7 +7,11 @@ import { Auth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword }
 })
 
 export class AuthService {
-    constructor(private auth: Auth) {}
+    constructor(private auth: Auth, private http: HttpClient) {}
+
+    login(credentials: {username: string, password: string}) {
+        return this.http.post<any>('URL_DO_BACKEND/login/', credentials);
+    }
 
     loginWithGoogle() {
         const provider = new GoogleAuthProvider();

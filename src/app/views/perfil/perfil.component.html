@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="profile-section">
+    <button class="back-home" (click)="goBack()">&#8592;</button>
+    <div class="avatar">
+      <img [src]="profileImageUrl || 'assets/imagens/avatar.png'" alt="Avatar" />
+      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+    <p *ngIf="username">Bem-vindo, {{ username }}</p>
+    <p *ngIf="!username">Usuario não encontrado.</p>
+    <button class="indications-btn">
+      Indicações <span class="badge">{{ user.indications }}</span>
+    </button>
+  </div>
+
+  <div class="grid-movies">
+    <div class="movie-card" *ngFor="let movie of movies">
+      <img [src]="movie.img" [alt]="movie.title" />
+    </div>
+  </div>
+</div>

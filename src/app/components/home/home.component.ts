@@ -1,14 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, RouterModule]
 })
 export class HomeComponent {
+
+  categorias: string[] = [
+    'Acão',
+    'Comédia',
+    'Drama',
+    'Ficção Cientifica',
+    'Terror',
+    'Romance',
+    'Animação',
+    'Documentario',
+  ]
+  
   movies = [
     { title: 'From', img: 'assets/imagens/movies/from.png' },
     { title: 'Casamento às Cegas', img: 'assets/imagens/movies/casamento-cegas.png' },
