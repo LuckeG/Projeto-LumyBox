@@ -38,29 +38,55 @@ export class DefaultLoginLayoutComponent {
   }
   
 
-onSubmit() {
-  if (this.loginForm.valid) {
-    this.cliente
-      .post<{ access: string; refresh: string }>(
-        'http://localhost:8000/auth/jwt/create/',
-        {
-          username: this.loginForm.controls['username'].value,
-          password: this.loginForm.controls['password'].value
-        }
-      ).subscribe((resp) => {
-        localStorage.setItem('token', resp.access);
-
-        // Agora busca os dados do usuário com o token
-        this.cliente.get<{ username: string }>(
-          'http://localhost:8000/auth/user/',
-          { headers: { Authorization: `Bearer ${resp.access}` } }
-        ).subscribe(userResp => {
-          localStorage.setItem('username', userResp.username);
-          this.router.navigate(['/home']);
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const { username, password } = this.loginForm.value;
+  
+      this.cliente
+        .post<{ access: string; refresh: string }>(
+          'http://localhost:8000/auth/jwt/create/',
+          { username, password }
+        )
+        .subscribe({
+          next: (resp) => {
+            console.log('Token JWT recebido:', resp.access);
+            localStorage.setItem('token', resp.access);
+  
+            this.cliente
+              .get<{ username: string; email:string }>(
+                'http://localhost:8000/auth/users/me/',
+                {
+                  headers: {
+                    Authorization: `Bearer ${resp.access}`,
+                  },
+                }
+              )
+              .subscribe({
+                next: (userResp) => {
+                  console.log('Usuário retornado:', userResp);
+                  if (userResp.username && userResp.username !== 'underfined') {
+                    localStorage.setItem('username', userResp.username);
+                  } else {
+                    console.warn('Campo "nome" ausente na resposta do usuário!', userResp);
+                  }
+                  this.router.navigate(['/home']);
+                },
+                error: (err) => {
+                  console.error('Erro ao buscar usuário:', err);
+                  alert('Erro ao buscar informações do usuário.');
+                },
+              });
+          },
+          error: (err) => {
+            console.error('Erro ao autenticar:', err);
+            alert('Usuário ou senha incorretos.');
+          },
         });
-      });
+    } else {
+      alert('Preencha todos os campos!');
+    }
   }
-}
+  
 
   loginWithGoogle(){
     this.authService.loginWithGoogle()
