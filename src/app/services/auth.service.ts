@@ -10,7 +10,7 @@ export class AuthService {
     constructor(private auth: Auth, private http: HttpClient) {}
 
     login(credentials: {username: string, password: string}) {
-        return this.http.post<any>('URL_DO_BACKEND/login/', credentials);
+        return this.http.post<{ access: string; refresh: string }>('http://localhost:8000/auth/jwt/create/', credentials);
     }
 
     loginWithGoogle() {

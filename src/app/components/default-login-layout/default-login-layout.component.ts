@@ -52,10 +52,15 @@ onSubmit() {
 
         // Agora busca os dados do usuário com o token
         this.cliente.get<{ username: string }>(
-          'http://localhost:8000/auth/user/',
+          'http://localhost:8000/auth/user/me/',
           { headers: { Authorization: `Bearer ${resp.access}` } }
         ).subscribe(userResp => {
-          localStorage.setItem('username', userResp.username);
+          console.log('Usuário retornado:', userResp);
+          if (userResp.username && userResp.username !== 'underfined'){
+            localStorage.setItem('username', userResp.username);
+          } else {
+            console.warn('Campo "nome" ausente na resposta do usuário!', userResp);
+          }
           this.router.navigate(['/home']);
         });
       });
