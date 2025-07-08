@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 export class PerfilComponent {
   public username: string | null = null;
 
-  profileImageUrl: string | null = null;
+  photoURL: string | null = null;
 
   user = {
     name: ' ',
@@ -41,7 +41,7 @@ export class PerfilComponent {
 
     const savedImage = localStorage.getItem('profileImage');
     if (savedImage) {
-      this.profileImageUrl = savedImage;
+      this.photoURL = savedImage;
     }
   }
 
@@ -56,9 +56,9 @@ export class PerfilComponent {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.profileImageUrl = reader.result as string;
-        localStorage.setItem('profileImage', this.profileImageUrl);
-        console.log('Imagem carregada:', this.profileImageUrl);
+        this.photoURL = reader.result as string;
+        localStorage.setItem('profileImage', this.photoURL);
+        console.log('Imagem carregada:', this.photoURL);
       };
       reader.readAsDataURL(file);
     }

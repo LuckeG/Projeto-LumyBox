@@ -37,7 +37,23 @@ export class DefaultLoginLayoutComponent {
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
-  
+
+    loginWithGoogle(){
+    this.authService.loginWithGoogle()
+    .then((result: UserCredential) => {
+      console.log('Usuário retornado pelo Google:', result.user)
+      const userData = {
+        username: result.user,
+        email: result.user.email,
+        photoURL: result.user.photoURL
+      }
+      console.log ('Login realizado com sucesso!', result.user)
+      this.router.navigate(['/home']);
+    })
+    .catch((error: any) => {
+      console.error ('erro', error);
+    });
+  }
 
   onSubmit() {
     if (this.loginForm.valid) {
@@ -73,16 +89,6 @@ export class DefaultLoginLayoutComponent {
           );
         });
     }
-  }
-
-  loginWithGoogle(){
-    this.authService.loginWithGoogle()
-    .then((result: UserCredential) => {
-      console.log ('Login realizado com sucesso!', result.user)
-    })
-    .catch((error: any) => {
-      console.error ('erro', error);
-    });
   }
   
 }
