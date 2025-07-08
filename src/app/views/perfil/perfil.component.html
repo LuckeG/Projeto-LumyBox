@@ -5,7 +5,8 @@
       <img [src]="profileImageUrl || 'assets/imagens/avatar.png'" alt="Avatar" />
       <input type="file" (change)="onFileSelected($event)" accept="image/*">
     </div>
-    <p class="username">Bem-vindo, {{ user.username | titlecase }}</p>
+    <p *ngIf="username">Bem-vindo, {{ username }}</p>
+    <p *ngIf="!username">Usuario não encontrado.</p>
     <button class="indications-btn">
       Indicações <span class="badge">{{ user.indications }}</span>
     </button>

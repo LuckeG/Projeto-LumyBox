@@ -14,7 +14,10 @@ export class PerfilComponent {
 
   profileImageUrl: string | null = null;
 
-  user: { username: string, indications: number };
+  user = {
+    name: ' ',
+    indications: 5
+  };
 
   movies = [
     { title: 'From', img: 'assets/imagens/movies/from.png' },
@@ -33,9 +36,8 @@ export class PerfilComponent {
 
   constructor(private router: Router) {
     const savedName = localStorage.getItem('username');
-    console.log('Username do localStorage:', savedName);
-    this.username = (!savedName || savedName === 'undefined')? 'Visitante' :savedName;
-    this.user = { username: this.username, indications: 5};
+    console.log('Username do localStorage:', this.username);
+    this.user.name = savedName ? savedName : 'Visitante';
 
     const savedImage = localStorage.getItem('profileImage');
     if (savedImage) {
