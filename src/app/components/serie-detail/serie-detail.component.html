@@ -1,0 +1,44 @@
+<button (click)="voltar()" class="btn-voltar">← Voltar para a tela inicial</button>
+
+
+<div
+  *ngIf="serie; else loading"
+  class="serie-detalhes-container"
+  [ngStyle]="{
+    'background-image': 'url(' + getBackgroundUrl() + ')',
+    'background-size': 'cover',
+    'background-position': 'center',
+    'filter': 'brightness(1)'
+  }"
+>
+  <div class="serie-card">
+    <img
+      *ngIf="serie.poster_path"
+      [src]="'https://image.tmdb.org/t/p/w500' + serie.poster_path"
+      [alt]="serie.name"
+      class="poster"
+    />
+
+    <div class="serie-info">
+      <h2>{{ serie.title || serie.name }}</h2>
+
+      <p><strong>Sinopse:</strong> {{ serie.overview || 'Sem descrição disponível.' }}</p>
+
+      <div class="extra-info">
+        <p><strong>Lançamento:</strong> {{ serie.first_air_date || 'Desconhecido' }}</p>
+        <p><strong>Nota:</strong> {{ serie.vote_average || 'N/A' }}</p>
+        <p><strong>Idioma:</strong> {{ serie.original_language?.toUpperCase() }}</p>
+        <p *ngIf="serie.genres?.length">
+          <strong>Gêneros:</strong>
+          <span *ngFor="let genre of serie.genres; let last = last">
+            {{ genre.name }}<span *ngIf="!last">, </span>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Carregando detalhes da série...</p>
+</ng-template>

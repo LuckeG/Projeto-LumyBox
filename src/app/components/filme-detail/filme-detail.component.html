@@ -1,0 +1,44 @@
+<button (click)="voltar()" class="btn-voltar">← Voltar para a tela inicial</button>
+
+
+<div
+  *ngIf="filme; else loading"
+  class="filme-detalhes-container"
+  [ngStyle]="{
+    'background-image': 'url(' + getBackgroundUrl() + ')',
+    'background-size': 'cover',
+    'background-position': 'center',
+    'filter': 'brightness(1)'
+  }"
+>
+  <div class="filme-card">
+    <img
+      *ngIf="filme.poster_path"
+      [src]="'https://image.tmdb.org/t/p/w500' + filme.poster_path"
+      [alt]="filme.title || filme.name"
+      class="poster"
+    />
+
+    <div class="filme-info">
+      <h2>{{ filme.title || filme.name }}</h2>
+
+      <p><strong>Sinopse:</strong> {{ filme.overview || 'Sem descrição disponível.' }}</p>
+
+      <div class="extra-info">
+        <p><strong>Lançamento:</strong> {{ filme.release_date || filme.first_air_date || 'Desconhecido' }}</p>
+        <p><strong>Nota:</strong> {{ filme.vote_average || 'N/A' }}</p>
+        <p><strong>Idioma:</strong> {{ filme.original_language?.toUpperCase() }}</p>
+        <p *ngIf="filme.genres?.length">
+          <strong>Gêneros:</strong>
+          <span *ngFor="let genre of filme.genres; let last = last">
+            {{ genre.name }}<span *ngIf="!last">, </span>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Carregando detalhes do filme...</p>
+</ng-template>

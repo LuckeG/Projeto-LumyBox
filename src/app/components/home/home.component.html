@@ -8,19 +8,21 @@
                 <p>Não sabe o que assistir?</p>
             </div>
         <div class="filters">
-            
             <div class="search-section">
                 <label for="inp">
                     <img src="../../../assets/imagens/search-icon.svg" alt="">
                 </label>
-                <input type="text" id="inp" class="email">
+                <input type="text" id="inp" class="email" [(ngModel)]="query" (keyup.enter)="buscar()" placeholder="Buscar filme ou série">
             </div>
             
-          <button class="filter-button">Filmes</button>
-          <button class="filter-button">Séries</button>
-          <select class="filter-select">
-            <option>Categorias</option>
-            <option *ngFor="let categoria of categorias" [value]="categorias">{{ categoria }}</option>
+          <button class="filter-button" (click)="alterarTipo('filmes')">Filmes</button>
+          <button class="filter-button" (click)="alterarTipo('series')">Séries</button>
+
+          <select class="filter-select" (change)="filtrarPorCategoria($event)">
+            <option disabled selected>{{ selecionado }}</option>
+            <option *ngFor="let categoria of categorias" [value]="categoria.id">
+              {{ categoria.name }}
+            </option>
           </select>
 
            <button class="profile-button" routerLink="/perfil">Perfil</button>
@@ -30,10 +32,12 @@
   
     <div class="main-content">
       <div class="grid-movies">
-        <div class="movie-card" *ngFor="let movie of movies">
+        <div class="movie-card" *ngFor="let movie of movies" (click)="verDetalhes(movie.id)">
           <img [src]="movie.img" [alt]="movie.title" />
         </div>
       </div>
+
+      <button (click)="carregarMais()" class="btn-carregar-mais">Carregar mais</button>
   
       <div class="suggestion-box">
         <div class="suggestion-card"></div>

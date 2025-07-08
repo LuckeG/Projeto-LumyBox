@@ -7,6 +7,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { CommonModule } from '@angular/common';
+import { FilmeDetailComponent } from './components/filme-detail/filme-detail.component';
+import { SerieDetailComponent } from './components/serie-detail/serie-detail.component';
 
 export const routes: Routes = [
     { path: 'perfil', component: PerfilComponent },
@@ -14,6 +16,9 @@ export const routes: Routes = [
     { path: 'forgot-password', component: ForgetPasswordComponent},
     { path: 'register', component:  RegisterComponent},
     { path: 'home', component: HomeComponent },
+    { path: 'filmes/:id', component: FilmeDetailComponent },
+    { path: 'series/:id', component: SerieDetailComponent },
+
 ];
 
 @NgModule({
