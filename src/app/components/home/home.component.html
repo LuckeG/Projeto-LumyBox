@@ -39,8 +39,11 @@
 
       <button (click)="carregarMais()" class="btn-carregar-mais">Carregar mais</button>
   
-      <div class="suggestion-box">
-        <div class="suggestion-card"></div>
+      <div class="suggestion-box" *ngIf="selectedSuggestion">
+        <div class="suggestion-card">
+          <h3>{{ selectedSuggestion.title }}</h3>
+          <img [src]="selectedSuggestion.img" [alt]="selectedSuggestion.title">
+        </div>
       </div>
     </div>
   </div>

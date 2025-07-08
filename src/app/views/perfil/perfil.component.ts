@@ -36,7 +36,7 @@ export class PerfilComponent {
 
   constructor(private router: Router) {
     const savedName = localStorage.getItem('username');
-    console.log('Username do localStorage:', this.username);
+    console.log('Username do localStorage:', savedName);
     this.user.name = savedName ? savedName : 'Visitante';
 
     const savedImage = localStorage.getItem('profileImage');

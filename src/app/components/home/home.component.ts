@@ -19,6 +19,9 @@ export class HomeComponent implements OnInit {
   categorias: any[] = [];
   selecionado: string = 'Categorias';
   movies: any[] = [];
+  selectedSuggestion: { id: number; title: string; img: string } | null = null;
+  selectedItem: any = null; 
+  mostrandoDetalhes = false;
 
   paginaAtual = 1;
 
@@ -90,6 +93,35 @@ export class HomeComponent implements OnInit {
     this.carregarCategorias();
   }
 
+  
+/* aleatorizarSugestao() {
+    if (this.movies && this.movies.length > 0) {
+      const randomIndex = Math.floor(Math.random() * this.movies.length);
+      this.selectedSuggestion = this.movies[randomIndex];
+
+      this.mostrarDetalhes(item.id);
+  }
+}
+
+mostrarDetalhes(id: number) {
+  if (this.tipo === 'filmes') {
+    this.tmdb.get_movie_details(id).subscribe(
+      (res) => {
+        this.selectedItem = res;
+        this.mostrandoDetalhes = true;
+      }
+    );
+  } else {
+    this.tmdb.getSeriesDetails(id).subscribe(
+      (res) => {
+        this.selectedItem = res;
+        this.mostrandoDetalhes = true;
+      }
+    );
+  }
+}
+
+*/
   formatar(lista: any[]) {
     return lista.map(item => ({
       id: item.id,
