@@ -78,7 +78,15 @@ export class DefaultLoginLayoutComponent {
   loginWithGoogle(){
     this.authService.loginWithGoogle()
     .then((result: UserCredential) => {
-      console.log ('Login realizado com sucesso!', result.user)
+      console.log ('Usuário retornado pelo Google:', result.user)
+      const userData = {
+        username: result.user.displayName,
+        email: result.user.email,
+        photoURL: result.user.photoURL
+      };
+      console.log('Login realizado com sucesso!', result.user)
+
+      this.router.navigate(['/home'])
     })
     .catch((error: any) => {
       console.error ('erro', error);

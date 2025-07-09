@@ -2,14 +2,15 @@
   <div class="profile-section">
     <button class="back-home" (click)="goBack()">&#8592;</button>
     <div class="avatar">
-      <img [src]="profileImageUrl || 'assets/imagens/avatar.png'" alt="Avatar" />
+      <img [src]="photoURL || 'assets/imagens/avatar.png'" alt="Avatar" />
       <input type="file" (change)="onFileSelected($event)" accept="image/*">
     </div>
-    <p *ngIf="user.name && user.name !== 'Visitante'">Bem-vindo, {{ user.name }}</p>
+    <p class="usuario" *ngIf="user.name && user.name !== 'Visitante'">Bem-vindo, {{ user.name }}</p>
     <p *ngIf="!user.name || user.name === 'Visitante'">Usuario não encontrado.</p>
     <button class="indications-btn">
       Indicações <span class="badge">{{ user.indications }}</span>
     </button>
+    <button type="button" (click)="logout()" class="Sair">Sair</button>
   </div>
 
   <div class="grid-movies">

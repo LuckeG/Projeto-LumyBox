@@ -20,6 +20,7 @@
     />
 
     <div class="filme-info">
+      <button class="btn-sortear-inline" (click)="sortearOutro()">Me surpreenda com mais cinema</button>
       <h2>{{ filme.title || filme.name }}</h2>
 
       <p><strong>Sinopse:</strong> {{ filme.overview || 'Sem descrição disponível.' }}</p>

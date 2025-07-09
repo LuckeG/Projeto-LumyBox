@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { forkJoin, map} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,15 @@ export class TmdbService {
 
   getSerieDetalhes(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/series/${id}/`);
+  }
+
+  getTodosFilmesOuSeries() {
+    const filmes$ = this.getPopularMovies(1);
+    const series$ = this.getPopularSeries(1);
+
+    return forkJoin([filmes$, series$]).pipe(
+      map(([filmes$, series]) => [...filmes$, ...series])
+    );
   }
   
 }

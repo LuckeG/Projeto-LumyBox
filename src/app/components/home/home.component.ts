@@ -24,7 +24,8 @@ export class HomeComponent implements OnInit {
   mostrandoDetalhes = false;
 
   paginaAtual = 1;
-
+  lastSortedId: number | null = null;
+  
   constructor(private tmdb: TmdbService, private router: Router) {}
 
   ngOnInit(): void {
@@ -94,34 +95,7 @@ export class HomeComponent implements OnInit {
   }
 
   
-/* aleatorizarSugestao() {
-    if (this.movies && this.movies.length > 0) {
-      const randomIndex = Math.floor(Math.random() * this.movies.length);
-      this.selectedSuggestion = this.movies[randomIndex];
 
-      this.mostrarDetalhes(item.id);
-  }
-}
-
-mostrarDetalhes(id: number) {
-  if (this.tipo === 'filmes') {
-    this.tmdb.get_movie_details(id).subscribe(
-      (res) => {
-        this.selectedItem = res;
-        this.mostrandoDetalhes = true;
-      }
-    );
-  } else {
-    this.tmdb.getSeriesDetails(id).subscribe(
-      (res) => {
-        this.selectedItem = res;
-        this.mostrandoDetalhes = true;
-      }
-    );
-  }
-}
-
-*/
   formatar(lista: any[]) {
     return lista.map(item => ({
       id: item.id,
@@ -141,5 +115,25 @@ verDetalhes(id: number | undefined) {
     console.warn('ID inválido:', id);
   }
 }
+
+  sortearFilmeOuSerie() {
+    this.tmdb.getTodosFilmesOuSeries().subscribe((itens) => {
+      if (!itens || itens.length === 0) return;
+
+      let item;
+      let tentativas = 0;
+
+      do {
+        const index = Math.floor(Math.random() * itens.length);
+        item = itens[index];
+        tentativas++;
+        if (tentativas > 10) break;
+      } while (item.id === this.lastSortedId);
+
+      this.lastSortedId = item.id;
+      const tipo = item.title ? 'filmes' : 'series';
+      this.router.navigate([`/${tipo}`, item.id]);
+    });
+  }
 
 }

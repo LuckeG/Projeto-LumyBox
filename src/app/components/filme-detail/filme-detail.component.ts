@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
   imports: [CommonModule],
 })
 export class FilmeDetailComponent implements OnInit {
-  filme: any;  // declarada publicamente
+  filme: any;
+  todosItens: any[] = [];
+  lastSortedId: number | null = null;  // declarada publicamente
 
   getBackgroundUrl(): string {
   if (this.filme?.backdrop_path) {
@@ -37,11 +39,36 @@ export class FilmeDetailComponent implements OnInit {
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log('ID carregado:', id);
+    this.carregarDetalhes(id);
+
+    // carrega todos os filmes e séries para sorteio
+    this.tmdbService.getTodosFilmesOuSeries().subscribe(dados => {
+      this.todosItens = dados;
+    });
+  }
+
+  carregarDetalhes(id: number) {
     this.tmdbService.getFilmeDetalhes(id).subscribe(data => {
-      console.log('Dados do filme:', data);
       this.filme = data;
     });
+  }
+
+    sortearOutro() {
+      if (this.todosItens.length === 0) return;
+
+      let item;
+      let tentativas = 0;
+
+    do {
+      const index = Math.floor(Math.random() * this.todosItens.length);
+      item = this.todosItens[index];
+      tentativas++;
+      if (tentativas > 10) break;
+    } while (item.id === this.filme?.id);
+
+    this.lastSortedId = item.id;
+    const tipo = item.title ? 'filmes' : 'series';
+    this.router.navigate([`/${tipo}`, item.id]);
   }
 }
 
