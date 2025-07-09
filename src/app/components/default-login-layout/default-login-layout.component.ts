@@ -43,11 +43,12 @@ export class DefaultLoginLayoutComponent {
     .then((result: UserCredential) => {
       console.log('Usuário retornado pelo Google:', result.user)
       const userData = {
-        username: result.user,
+        username: result.user.displayName,
         email: result.user.email,
         photoURL: result.user.photoURL
-      }
+      };
       console.log ('Login realizado com sucesso!', result.user)
+
       this.router.navigate(['/home']);
     })
     .catch((error: any) => {

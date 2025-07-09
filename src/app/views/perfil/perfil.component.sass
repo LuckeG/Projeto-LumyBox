@@ -1,28 +1,25 @@
-.container 
-  display: flex;
-  background-color: #13142a;
-  color: white;
-  height: 100vh;
-  padding: 2rem;
-  font-family: 'Arial', sans-serif;
+.container
+  display: flex
+  color: white
+  height: 100vh
+  padding: 2rem
+  font-family: 'Arial', sans-serif
 
+.profile-section
+  width: 220px
+  display: flex
+  flex-direction: column
+  align-items: center
+  margin-right: 2rem
 
-.profile-section 
-  width: 220px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 2rem;
-
-  .back-home 
-    align-self: flex-start;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin-bottom: 1rem;
-  
+  .back-home
+    align-self: flex-start
+    background: none
+    border: none
+    color: white
+    font-size: 1.5rem
+    cursor: pointer
+    margin-bottom: 1rem
 
 .avatar
   position: relative
@@ -47,49 +44,64 @@
     opacity: 0
     cursor: pointer
 
+.usuario
+  color: white
+  font-size: 0.8rem
+  margin-top: 1rem
+  text-align: center
+  font-family: 'poppins', sans-serif
 
-.username 
-  margin: 1rem 0;
-  font-size: 1.2rem;
-  font-weight: bold;
-  
+.indications-btn
+  background-color: transparent
+  border: 1px solid white
+  color: white
+  font-family: 'poppins', sans-serif
+  padding: 0.5rem 1rem
+  border-radius: 8px
+  position: relative
+  cursor: pointer
+  margin-top: 1rem
 
-.indications-btn 
-  background-color: transparent;
-  border: 1px solid white;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  position: relative;
-  cursor: default;
-
-  .badge 
-    color: red;
-    font-weight: bold;
-    margin-left: 0.5rem;
-    
-  
+  .badge
+    color: red
+    margin-left: 0.5rem
+.indications-btn:hover
+  transform: scale(1.05)
 
 .grid-movies
-    display: grid
-    grid-template-columns: repeat(5, 1fr)
-    gap: 1.5rem
-    flex: 1
+  display: grid
+  grid-template-columns: repeat(5, 1fr)
+  gap: 1.5rem
+  flex: 1
 
 .movie-card
-    width: 140px
-    height: 210px
-    overflow: hidden
-    border-radius: 10px
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3)
-    transition: transform 0.2s ease
+  width: 140px
+  height: 210px
+  overflow: hidden
+  border-radius: 10px
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3)
+  transition: transform 0.2s ease
 
 .movie-card img
-    width: 100%
-    height: 100%
-    object-fit: cover
-    border-radius: 10px
+  width: 100%
+  height: 100%
+  object-fit: cover
+  border-radius: 10px
 
 .movie-card:hover
-    transform: scale(1.05)
+  transform: scale(1.05)
+
+.Sair
+  background-color: transparent
+  border: 1px solid white
+  color: white
+  font-family: 'poppins', sans-serif
+  padding: 0.5rem 1rem
+  border-radius: 8px
+  position: relative
+  cursor: pointer
+  margin-top: 1rem
   
+
+.Sair:hover
+  transform: scale(1.05)

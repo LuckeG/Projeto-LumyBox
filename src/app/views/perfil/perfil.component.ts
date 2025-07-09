@@ -6,12 +6,11 @@ import { CommonModule } from '@angular/common';
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.sass'],
-    standalone: true,
+  standalone: true,
   imports: [CommonModule]
 })
 export class PerfilComponent {
   public username: string | null = null;
-
   photoURL: string | null = null;
 
   user = {
@@ -39,17 +38,18 @@ export class PerfilComponent {
     console.log('Username do localStorage:', savedName);
     this.user.name = savedName ? savedName : 'Visitante';
 
-    const savedImage = localStorage.getItem('profileImage');
+    const savedImage = localStorage.getItem('photoURL');
+    console.log('Photo URL do localStorage:', savedImage);
     if (savedImage) {
       this.photoURL = savedImage;
     }
   }
 
-   goBack(): void {
-      this.router.navigate(['/home']);
-    }
+  goBack(): void {
+    this.router.navigate(['/home']);
+  }
 
-  onFileSelected(event: Event): void{
+  onFileSelected(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     console.log('Arquivo selecionado:', file);
 
@@ -62,5 +62,14 @@ export class PerfilComponent {
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  logout(): void {
+    localStorage.removeItem('username');
+    localStorage.removeItem('photoURL');
+    localStorage.removeItem('email');
+    localStorage.removeItem('uid');
+
+    this.router.navigate(['/login']);
   }
 }
