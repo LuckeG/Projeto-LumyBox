@@ -95,7 +95,6 @@ export class HomeComponent implements OnInit {
   }
 
   
-
   formatar(lista: any[]) {
     return lista.map(item => ({
       id: item.id,
