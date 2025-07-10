@@ -65,6 +65,7 @@ export class DefaultLoginLayoutComponent {
               
               localStorage.setItem('username', userResp.username);
               console.log('Nome salvo no localStorage:', userResp.username);
+              localStorage.setItem('token', resp.access);
               this.router.navigate(['/home']);
             },
             err => {

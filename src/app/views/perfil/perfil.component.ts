@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ListaService } from 'app/services/lista.service';
 
 @Component({
   selector: 'app-perfil',
@@ -9,32 +11,19 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule]
 })
-export class PerfilComponent {
+export class PerfilComponent implements OnInit{
   public username: string | null = null;
 
   photoURL: string | null = null;
+  mostrarIndicacoes = false;
+  movies: any[] = [];
 
   user = {
     name: ' ',
-    indications: 5
+    indications: ''
   };
 
-  movies = [
-    { title: 'From', img: 'assets/imagens/movies/from.png' },
-    { title: 'Casamento às Cegas', img: 'assets/imagens/movies/casamento-cegas.png' },
-    { title: 'Novocaine', img: 'assets/imagens/movies/novocaine.png' },
-    { title: 'Nós', img: 'assets/imagens/movies/nos.png' },
-    { title: 'Casamento Sangrento', img: 'assets/imagens/movies/casamento-sangrento.png' },
-    { title: 'Blink Twice', img: 'assets/imagens/movies/blink-twice.png' },
-    { title: 'Black Clover', img: 'assets/imagens/movies/black-clover.png' },
-    { title: 'Cartas para Julieta', img: 'assets/imagens/movies/cartas-julieta.png' },
-    { title: 'Inferno na Palha', img: 'assets/imagens/movies/inferno-palha.png' },
-    { title: 'A Batalha dos 100', img: 'assets/imagens/movies/batalha.png' },
-    { title: 'Soltos em Floripa', img: 'assets/imagens/movies/soltos.png' },
-    { title: 'Alice in Borderland', img: 'assets/imagens/movies/alice.png' }
-  ];
-
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient, private listaService: ListaService) {
     const savedName = localStorage.getItem('username');
     console.log('Username do localStorage:', savedName);
     this.user.name = savedName ? savedName : 'Visitante';
@@ -44,6 +33,15 @@ export class PerfilComponent {
     if (savedImage) {
       this.photoURL = savedImage;
     }
+  }
+
+  ngOnInit() {
+    this.carregarMinhaLista(); // carrega lista ao iniciar o perfil
+
+    this.listaService.atualizarLista$.subscribe(() => {
+      console.log('Evento de atualização recebido no perfil');
+      this.carregarMinhaLista(); // atualiza automaticamente quando receber evento
+    });
   }
 
   goBack(): void {
@@ -58,7 +56,7 @@ export class PerfilComponent {
       const reader = new FileReader();
       reader.onload = () => {
         this.photoURL = reader.result as string;
-        localStorage.setItem('profileImage', this.photoURL);
+        localStorage.setItem('photoURL', this.photoURL);
         console.log('Imagem carregada:', this.photoURL);
       };
       reader.readAsDataURL(file);
@@ -67,10 +65,65 @@ export class PerfilComponent {
 
   logout(): void {
     localStorage.removeItem('username');
-    localStorage.removeItem('photoURL');
+    //localStorage.removeItem('photoURL');
     localStorage.removeItem('email')
     localStorage.removeItem('uid');
 
     this.router.navigate(['/login']);
   }
+
+  carregarIndicacoes() {
+    const token = localStorage.getItem('token');
+
+    this.http.get<any[]>('http://localhost:8000/api/indicacoes/recebidas/', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).subscribe({
+      next: (data) => {
+        this.movies = data.map(indicacao => ({
+          title: indicacao.title,
+          img: indicacao.poster_path
+            ? `https://image.tmdb.org/t/p/w500${indicacao.poster_path}`
+            : 'assets/imagens/default-poster.png'
+        }));
+        this.mostrarIndicacoes = true;
+      },
+      error: (error) => {
+        console.error('Erro ao carregar indicações:', error)
+        this.mostrarIndicacoes = false;
+      }
+    })
+  }
+
+  carregarMinhaLista() {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+
+    this.http.get<any[]>('http://localhost:8000/api/lista/', { headers }).subscribe({
+      next: (lista) => {
+        const detalhesRequests = lista.map(item => {
+          const url = item.tipo === 'filme'
+            ? `http://localhost:8000/api/filmes/${item.item_id}/`
+            : `http://localhost:8000/api/series/${item.item_id}/`;
+
+          return this.http.get<any>(url, { headers });
+        });
+
+        Promise.all(detalhesRequests.map(req => req.toPromise())).then(detalhes => {
+          this.movies = detalhes.map(m => ({
+            title: m.title || m.name,
+            img: m.poster_path
+              ? `https://image.tmdb.org/t/p/w500${m.poster_path}`
+              : 'assets/imagens/default-poster.png'
+          }));
+        });
+      },
+      error: (err) => {
+        console.error('Erro ao carregar lista:', err);
+      }
+    });
+  }
+
+
 }

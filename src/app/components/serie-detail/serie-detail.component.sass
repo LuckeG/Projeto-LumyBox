@@ -49,24 +49,152 @@
 .btn-voltar:hover 
   background-color: #666;
 
-.btn-sortear-inline
-  margin-top: 1.5rem
-  padding: 10px 20px
-  background-color: #0077cc
-  color: #fff
+
+.btn-indicar 
+  background-color: #d12642
+  color: white
+  padding: 10px 18px
+  border: none
+  border-radius: 8px
+  font-weight: 600
+  font-size: 16px
+  cursor: pointer
+  margin-top: 15px
+  box-shadow: 0 4px 10px rgba(255, 64, 129, 0.4)
+  transition: background-color 0.3s ease, transform 0.2s
+
+  &:hover 
+    background-color: #d12642
+    transform: scale(1.05)
+  
+
+  &:active 
+    background-color: #d12642
+    transform: scale(0.98)
+
+.form-indicar 
+  margin-top: 20px
+  padding: 16px
+  background-color: #ffffffcc
+  border-radius: 12px
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1)
+
+  label 
+    display: block
+    font-weight: 600
+    margin-bottom: 8px
+    color: #333
+  
+
+  input#nomeUsuario 
+    width: 100%
+    padding: 10px 14px
+    border: 2px solid #d12642
+    border-radius: 8px
+    font-size: 16px
+    transition: border-color 0.3s ease
+
+    &:focus 
+      border-color: #d12642
+      outline: none
+    
+  
+
+  .lista-sugestoes 
+    list-style: none
+    margin-top: 8px
+    padding: 0
+    border: 1px solid #ddd
+    border-radius: 6px
+    max-height: 180px
+    overflow-y: auto
+    background-color: #fff
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08)
+
+    .sugestao-item 
+      padding: 10px 14px
+      cursor: pointer
+      transition: background-color 0.2s ease
+      background-color: #d12642
+
+      &:hover 
+        background-color: #d12642
+      
+    
+  
+
+  .msg-sucesso 
+    margin-top: 10px
+    color: #4caf50
+    font-weight: 600
+  
+
+  .msg-erro 
+    margin-top: 10px
+    color: #f44336
+    font-weight: 600
+  
+
+
+.btn-enviar-indicacao 
+  background-color: #4caf50
+  color: white
+  padding: 8px 16px
   border: none
   border-radius: 6px
+  font-weight: 600
+  margin-top: 10px
+  margin-right: 8px
   cursor: pointer
-  font-size: 1rem
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2)
+
+  &:hover 
+    background-color: #43a047
+  
+
+  &:disabled 
+    background-color: #a5d6a7
+    cursor: not-allowed
+  
+
+
+.btn-cancelar 
+  background-color: transparent
+  color: #ff4081
+  border: 2px solid #ff4081
+  padding: 8px 16px
+  border-radius: 6px
+  font-weight: 600
+  cursor: pointer
   transition: background-color 0.3s ease
 
-.btn-sortear-inline:hover
-  background-color: #005fa3
+  &:hover 
+    background-color: #ffebef
+  
+.btn-add-lista
+  background-color: #d12642
+  color: white
+  padding: 10px 18px
+  border: none
+  border-radius: 8px
+  font-weight: 600
+  font-size: 16px
+  cursor: pointer
+  margin-top: 15px
+  box-shadow: 0 4px 10px rgba(46, 125, 50, 0.4)
+  transition: background-color 0.3s ease, transform 0.2s
 
+  &:hover
+    background-color: #d12642
+    transform: scale(1.05)
 
+  &:active
+    background-color: #d12642
+    transform: scale(0.98)
 
 h2
   margin-bottom: 1rem
 
 .extra-info p
   margin: 0.3rem 0
+

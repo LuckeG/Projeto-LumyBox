@@ -2,7 +2,7 @@
 
 
 <div
-  *ngIf="serie; else loading"
+  *ngIf="serie"
   class="serie-detalhes-container"
   [ngStyle]="{
     'background-image': 'url(' + getBackgroundUrl() + ')',
@@ -20,7 +20,6 @@
     />
 
     <div class="serie-info">
-      <button class="btn-sortear-inline" (click)="sortearOutro()">Me surpreenda com mais cinema</button>
       <h2>{{ serie.title || serie.name }}</h2>
 
       <p><strong>Sinopse:</strong> {{ serie.overview || 'Sem descrição disponível.' }}</p>
@@ -36,10 +35,53 @@
           </span>
         </p>
       </div>
+
+      <button class="btn-indicar" (click)="toggleIndicar()">
+        Indicar para um amigo
+      </button>
+
+      <button class="btn-add-lista" (click)="adicionarMinhaLista()">
+        Adicionar a minha lista
+      </button>
+      <p *ngIf="mensagemLista" class="msg-sucesso">{{ mensagemLista }}</p>
+
+      <div *ngIf="mostrarFormularioIndicar" class="form-indicar">
+        <label for="nomeUsuario">Nome do usuário:</label>
+        <input
+            id="nomeUsuario" 
+            type="text"
+            [(ngModel)]="nomeUsuario"
+            (input)="buscarUsuarios()"
+            placeholder="Digite o nome do usuário"
+        />
+
+        <ul *ngIf="sugestoesUsuarios.length > 0" class="lista-sugestoes">
+            <li 
+                *ngFor="let user of sugestoesUsuarios"
+                (click)="selecionarUsuario(user)"
+                class="sugestao-item"
+            >
+                {{user.username}}    
+            </li>
+        </ul>
+
+        <button 
+            (click)="enviarIndicacao()"
+            [disabled]="!usuarioSelecionado"
+            class="btn-enviar-indicacao"
+        >
+            Enviar indicação
+        </button>
+        <button (click)="toggleIndicar()" class="btn-cancelar">
+            Cancelar
+        </button>
+
+        <p *ngIf="mensagemSucesso" class="msg-sucesso">{{ mensagemSucesso }}</p>
+        <p *ngIf="mensagemErro" class="msg-erro">{{ mensagemErro }}</p>
     </div>
   </div>
 </div>
 
-<ng-template #loading>
+<div *ngIf="!serie">
   <p>Carregando detalhes da série...</p>
-</ng-template>
+<div>

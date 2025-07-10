@@ -131,7 +131,7 @@ verDetalhes(id: number | undefined) {
       } while (item.id === this.lastSortedId);
 
       this.lastSortedId = item.id;
-      const tipo = item.title ? 'filmes' : 'series';
+      const tipo = item.media_type === 'movie' ? 'filmes-random' : 'series-random';
       this.router.navigate([`/${tipo}`, item.id]);
     });
   }
